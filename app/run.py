@@ -43,6 +43,16 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+
+    #Create a bar chart with the amount of times categories have been used
+    categories = list(df.iloc[:,5:].columns)
+    category_count = df.iloc[:,5:].sum().values
+
+    #Create a bar chart which shows the amount of entries with multiple set of categories
+    rowSums = df.iloc[:,5:].sum(axis=1)
+    multiLabel_counts = rowSums.value_counts()
+    multiLabel_counts = multiLabel_counts.iloc[1:]
+
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -62,6 +72,43 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=categories,
+                    y=category_count
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Categories"
+                }
+            }
+        },
+
+                {
+            'data': [
+                Bar(
+                    x=multiLabel_counts.index,
+                    y=multiLabel_counts.values
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Number of categories"
                 }
             }
         }

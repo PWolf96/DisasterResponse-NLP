@@ -15,6 +15,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
 from sklearn.pipeline import Pipeline
+from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.metrics import classification_report
@@ -86,8 +87,16 @@ def build_model():
         ('clf', MultiOutputClassifier(LogisticRegression()))
     ])
 
+    parameters = {
+    'tfidf__use_idf': (True, False),
+    'tfidf__smooth_idf': [True, False],
+    'vect__max_df': (0.5, 0.75, 1.0),
+    'vect__max_features': (None, 5000, 10000),
+    'clf__estimator__C': [.009,0.01,.09]
+}
+    cv = GridSearchCV(pipeline, param_grid=parameters)
 
-    return pipeline
+    return cv
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
@@ -96,7 +105,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     '''
     # predict on test data
     y_pred = model.predict(X_test)
-
+    print(classification_report(Y_test, y_pred))
 
 def save_model(model, model_filepath):
     '''

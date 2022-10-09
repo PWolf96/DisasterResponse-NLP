@@ -1,4 +1,5 @@
 #Importing relevant libraries
+from dataclasses import replace
 import sys
 import pandas as pd
 from sqlalchemy import create_engine
@@ -93,7 +94,7 @@ def save_data(df, database_filename):
     filenameDb = database_filename.split("/")[1]
     engine = create_engine('sqlite:///' + filenameDb)
     filename = filenameDb.split(".")[0]
-    df.to_sql(filename, engine, index=False)  
+    df.to_sql(filename, engine, index=False, if_exists='replace')  
 
 
 def main():
