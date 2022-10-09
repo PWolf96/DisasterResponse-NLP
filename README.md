@@ -50,6 +50,9 @@ The whole model has then been pushed into a web app which allows the user to ent
 ##### An image of the front page
 ![image](https://user-images.githubusercontent.com/94782650/194724465-526048b8-2706-4e65-ac62-4d6dd03d1b70.png)
 
+![image](https://user-images.githubusercontent.com/94782650/194777180-8164c159-769b-4ee1-b0b0-93f2e97dbeda.png)
+
+
 ##### An image of a classified message
 ![image](https://user-images.githubusercontent.com/94782650/194724520-ddafa80c-32b7-4515-a683-a0978c8b55af.png)
 
