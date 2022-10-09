@@ -53,7 +53,7 @@ def index():
     multiLabel_counts = rowSums.value_counts()
     multiLabel_counts = multiLabel_counts.iloc[1:]
 
-    
+
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
@@ -103,7 +103,7 @@ def index():
             ],
 
             'layout': {
-                'title': 'Distribution of Categories',
+                'title': 'Count of messages related to different number of categories',
                 'yaxis': {
                     'title': "Count"
                 },
